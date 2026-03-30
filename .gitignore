@@ -1,0 +1,6 @@
+matrix_tests
+
+external/
+
+.DS_Store
+*.o
