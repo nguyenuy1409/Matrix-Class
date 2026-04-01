@@ -1,0 +1,3 @@
+/mnt/c/Users/ADMIN/MatrixClass/build/CMakeFiles/matrix_tests.dir
+/mnt/c/Users/ADMIN/MatrixClass/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/ADMIN/MatrixClass/build/CMakeFiles/rebuild_cache.dir
