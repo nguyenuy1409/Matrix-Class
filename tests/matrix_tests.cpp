@@ -6,7 +6,7 @@
 TEST(MatrixTest, ConstructorSetsDimensions) {
     int rows = 3;
     int cols = 3;
-    Matrix m(rows, cols);
+    Matrix<double> m(rows, cols);
 
     // Assuming you have getter methods in your Matrix class
     // If not, you'll need to add them to matrix.hpp
@@ -16,76 +16,102 @@ TEST(MatrixTest, ConstructorSetsDimensions) {
 
 // Test 2: Check if the Matrix is initialized with zeros
 TEST(MatrixTest, InitializedToZero) {
-    Matrix m(2, 2);
-    // This is a placeholder; you'll check actual values once you
-    // implement the logic in matrix.cpp
-    EXPECT_TRUE(true);
+    Matrix<double> m(2, 2);
+    for(int i = 0 ; i < 2 ; i++) {
+	for(int j = 0 ; j < 2 ; j++) {
+		EXPECT_DOUBLE_EQ(m.getValue(i, j), 0.0);
+	}
+    }
 }
 
 TEST(MatrixTest, MatrixAdditionLogic) {
-    Matrix m1(2, 2);
-    Matrix m2(2, 2);
+    Matrix<double> m1(2, 2);
+    Matrix<double> m2(2, 2);
 
     // Set some values
-    m1.setValue(0, 0, 1);
-    m1.setValue(0, 1, 2);
-    m1.setValue(1, 0, 3);
-    m1.setValue(1, 1, 4);
+    m1.setValue(0, 0, 1.8);
+    m1.setValue(0, 1, 2.8);
+    m1.setValue(1, 0, 3.8);
+    m1.setValue(1, 1, 4.8);
 
-    m2.setValue(0, 0, 5);
-    m2.setValue(0, 1, 6);
-    m2.setValue(1, 0, 7);
-    m2.setValue(1, 1, 8);
+    m2.setValue(0, 0, 5.1);
+    m2.setValue(0, 1, 6.1);
+    m2.setValue(1, 0, 7.1);
+    m2.setValue(1, 1, 8.1);
 
     // Perform addition
-    Matrix result = m1 + m2;
+    Matrix<double> result = m1 + m2;
 
-    // Verify the results (1+5=6, 2+6=8, etc.)
-    EXPECT_EQ(result.getValue(0, 0), 6);
-    EXPECT_EQ(result.getValue(0, 1), 8);
-    EXPECT_EQ(result.getValue(1, 0), 10);
-    EXPECT_EQ(result.getValue(1, 1), 12);
+    // Verify the results
+    EXPECT_DOUBLE_EQ(result.getValue(0, 0), 6.9);
+    EXPECT_DOUBLE_EQ(result.getValue(0, 1), 8.9);
+    EXPECT_DOUBLE_EQ(result.getValue(1, 0), 10.9);
+    EXPECT_DOUBLE_EQ(result.getValue(1, 1), 12.9);
 }
 
 TEST(MatrixTest, MatrixSubtractionLogic) {
-	Matrix m1(4, 4);
-	Matrix m2(4, 4);
+	Matrix<double> m1(2, 2);
+	Matrix<double> m2(2, 2);
 
 	// Set some values
-	m1.setValue(0, 0, 1);
-	m1.setValue(0, 1, 2);
-	m1.setValue(1, 0, 3);
-	m1.setValue(1, 1, 4);
+	m1.setValue(0, 0, 1.5);
+	m1.setValue(0, 1, 2.5);
+	m1.setValue(1, 0, 3.5);
+	m1.setValue(1, 1, 4.5);
 
-	m2.setValue(0, 0, 5);
-	m2.setValue(0, 1, 6);
-	m2.setValue(1, 0, 7);
-	m2.setValue(1, 1, 8);
+	m2.setValue(0, 0, 5.4);
+	m2.setValue(0, 1, 6.4);
+	m2.setValue(1, 0, 7.4);
+	m2.setValue(1, 1, 8.4);
 
 	// Perform subtraction
-	Matrix result = m1 - m2;
+	Matrix<double> result = m1 - m2;
 
 	// Verify the results
-	EXPECT_EQ(result.getValue(0, 0), -4);
-	EXPECT_EQ(result.getValue(0, 1), -4);
-	EXPECT_EQ(result.getValue(1, 0), -4);
-	EXPECT_EQ(result.getValue(1, 1), -4);
+	EXPECT_DOUBLE_EQ(result.getValue(0, 0), -3.9);
+	EXPECT_DOUBLE_EQ(result.getValue(0, 1), -3.9);
+	EXPECT_DOUBLE_EQ(result.getValue(1, 0), -3.9);
+	EXPECT_DOUBLE_EQ(result.getValue(1, 1), -3.9);
 }
 
 TEST(MatrixTest, MatrixScalarMultiplication) {
-	Matrix m(2, 2);
+	Matrix<double> m(2, 2);
 
-	m.setValue(0, 0, 1);
-	m.setValue(0, 1, 2);
-	m.setValue(1, 0, 3);
-	m.setValue(1, 1, 4);
+	m.setValue(0, 0, 1.1);
+	m.setValue(0, 1, 2.2);
+	m.setValue(1, 0, 3.3);
+	m.setValue(1, 1, 4.4);
 
 	int k = 2;
 	m.scalarMultiplication(k);
 
-	EXPECT_EQ(m.getValue(0, 0), 2);
-	EXPECT_EQ(m.getValue(0, 1), 4);
-	EXPECT_EQ(m.getValue(1, 0), 6);
-	EXPECT_EQ(m.getValue(1, 1), 8);
+	EXPECT_DOUBLE_EQ(m.getValue(0, 0), 2.2);
+	EXPECT_DOUBLE_EQ(m.getValue(0, 1), 4.4);
+	EXPECT_DOUBLE_EQ(m.getValue(1, 0), 6.6);
+	EXPECT_DOUBLE_EQ(m.getValue(1, 1), 8.8);
+}
+
+TEST(MatrixTest, ComplicatedMatrixMultiplication) {
+	Matrix<double> m1(2, 3);
+	Matrix<double> m2(3, 1);
+
+	m1.setValue(0, 0, 7.6);
+        m1.setValue(0, 1, 9.6);
+	m1.setValue(0, 2, 6.8);
+        m1.setValue(1, 0, 6.9);
+        m1.setValue(1, 1, 9.11);
+	m1.setValue(1, 2, 6.7);
+
+        m2.setValue(0, 0, 1.2);
+        m2.setValue(1, 0, 2.3);
+        m2.setValue(2, 0, 3.4);
+
+	Matrix<double> res = m1 * m2;
+
+    	EXPECT_EQ(res.getRows(), 2);
+   	EXPECT_EQ(res.getCols(), 1);
+
+    	EXPECT_DOUBLE_EQ(res.getValue(0, 0), 54.32);
+    	EXPECT_DOUBLE_EQ(res.getValue(1, 0), 52.013);
 }
 
