@@ -6,7 +6,8 @@ template <typename T>
 class Matrix {
    private:
     int rows, cols;
-    std::vector<std::vector<T>> matrixData;
+    std::vector<T> matrixData;
+    int getIndex(int r, int c) const;
 
    public:
     Matrix(int r, int c);
